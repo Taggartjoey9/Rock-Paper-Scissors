@@ -9,23 +9,24 @@ let computerSelection = gameChoices[Math.floor(Math.random() * gameChoices.lengt
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         console.log('Its a tie')
-    }
-        else if (
+    
+        } else if (
             (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
             (playerSelection === 'Scissors' && computerSelection === 'Paper') ||
             (playerSelection === 'Paper' && computerSelection === 'Rock')
-        )
+        ) {
             console.log('Player has won')
             
         
-            else (
-                (computerSelection === 'Rock' && playerSelection === 'Scissors') ||
-                (computerSelection ==='Scissors' && playerSelection === 'Paper') ||
-                (computerSelection === 'Paper' && playerSelection === 'Rock')
-            )
-                console.log('Computer has won')
+        } else (
+            (computerSelection === 'Rock' && playerSelection === 'Scissors') ||
+            (computerSelection ==='Scissors' && playerSelection === 'Paper') ||
+            (computerSelection === 'Paper' && playerSelection === 'Rock')
+        ) 
+            console.log('Computer has won')
             
-            }
+          
+        }
+        
 
-
-
+playRound(playerSelection, computerSelection);
