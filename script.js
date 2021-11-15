@@ -1,32 +1,32 @@
-let gameChoices = ['Rock', 'Paper', 'Scissors']
+const selectionButtons = document.querySelectorAll('[data-selection]')
 
-let playerSelection = prompt('Rock, Paper, Scissors?');
+const SELECTIONS = [
+    {
+        name: 'rock',
+        emoji: '✊🏻',
+        beats: 'scissors'
+    },
+    {
+        name: 'paper',
+        emoji: '✋🏻',
+        beats: 'rock'
+    },
+    {
+        name: 'scissors',
+        emoji: '✌🏻',
+        beats: 'paper'
+    }
+]
 
-let computerSelection = gameChoices[Math.floor(Math.random() * gameChoices.length)];
 
+selectionButtons.forEach(selectionButton => {
+    selectionButton.addEventListener('click', e => {
+        const selectionName = selectionButton.dataset.selection
+        const selection = SELECTIONS.find(selection => seletion
+        makeselection(selectionName)
+    })
+})
 
-
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        console.log('Its a tie')
-    
-        } else if (
-            (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
-            (playerSelection === 'Scissors' && computerSelection === 'Paper') ||
-            (playerSelection === 'Paper' && computerSelection === 'Rock')
-        ) {
-            console.log('Player has won')
-            
-        
-        } else (
-            (computerSelection === 'Rock' && playerSelection === 'Scissors') ||
-            (computerSelection ==='Scissors' && playerSelection === 'Paper') ||
-            (computerSelection === 'Paper' && playerSelection === 'Rock')
-        ) 
-            console.log('Computer has won')
-            
-          
-        }
-        
-
-playRound(playerSelection, computerSelection);
+function makeselection(selection) {
+    console.log(selection)
+}
