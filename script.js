@@ -1,66 +1,62 @@
-const selectionButtons = document.querySelectorAll('[data-selection]')
-const finalColumn = document.querySelector('[data-final-column]')
-const computerScoreSpan = document.querySelector('[data-computer-score]')
-const playerScoreSpan = document.querySelector('[data-player-score]')
+const selections = ['Rock', 'Paper', 'Scissors']
 
-const SELECTIONS = [
-    {
-        name: 'rock',
-        emoji: '✊🏻',
-        beats: 'scissors'
-    },
-    {
-        name: 'paper',
-        emoji: '✋🏻',
-        beats: 'rock'
-    },
-    {
-        name: 'scissors',
-        emoji: '✌🏻',
-        beats: 'paper'
+let playerScore = 0
+let computerScore = 0
+let tieScore = 0 
+
+const rockBtn = document.querySelector('.rockBtn')
+const paperBtn = document.querySelector('.paperBtn')
+const scissorBtn = document.querySelector('.scissorBtn')
+
+
+function computerSelection() {
+    return selections[Math.floor(Math.random() * selections.length)];
+
+}
+
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+         tieScore++
     }
-]
+    else if (
+        (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
+        (playerSelection === 'Scissors' && computerSelection === 'Paper') ||
+        (playerSelection === 'Paper' && computerSelection === 'Rock')
+    ) {
+        playerScore++
+        
+    
+    }
+    else if (
+        (computerSelection === 'Rock' && playerSelection === 'Scissors') ||
+        (computerSelection === 'Scissors' && playerSelection === 'Paper') ||
+        (computerSelection === 'Paper' && playerSelection === 'Rock')
 
+    ) {
+        computerScore++
+         
+    }
+}
 
-selectionButtons.forEach(selectionButton => {
-    selectionButton.addEventListener('click', e => {
-        const selectionName = selectionButton.dataset.selection
-        const selection = SELECTIONS.find(selection => selection.name === selectionName)
-        makeSelection(selection)
-    })
+// UI
+
+rockBtn.addEventListener('click', () => {
+    playerSelection = 'Rock' 
+    playRound(playerSelection, computerSelection());
+    console.log(playerScore, computerScore, tieScore);
+    
 })
 
-function makeSelection(selection) {
-    const computerSelection = randomSelection()
-    const yourWinner = isWinner(selection, computerSelection)
-    const computerWinner = isWinner(computerSelection, selection)
-    console.log(selection)
+paperBtn.addEventListener('click', () => {
+    playerSelection = 'Paper' 
+    playRound(playerSelection, computerSelection());
+    console.log(playerScore, computerScore, tieScore);
+    
+})
 
-    addSelectionResult(computerSelection, computerWinner)
-    addSelectionResult(selection, yourWinner)
-
-    if (yourWinner) incementScore(playerScoreSpan)
-    if (computerWinner) incementScore(computerScoreSpan)
-}
-
-function incementScore(scoreSpan) {
-    scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1
-}
-
-function addSelectionResult(selection, winner) {
-    const div = document.createElement('div')
-    div.innerText = selection.emoji
-    div.classList.add('result-selection')
-    if (winner) div.classList.add('winner')
-    finalColumn.after(div)
-
-}
-
-function isWinner(selection, opponentSelection) {
-    return selection.beats === opponentSelection.name
-}
-
-function randomSelection() {
-    const randomIndex = (Math.random() * SELECTIONS.length)
-    return SELECTIONS[randomIndex]
-}
+scissorBtn.addEventListener('click', () => {
+    playerSelection = 'Scissors' 
+    playRound(playerSelection, computerSelection());
+    console.log(playerScore, computerScore, tieScore);
+    
+})
