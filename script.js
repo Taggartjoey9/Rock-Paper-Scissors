@@ -20,15 +20,17 @@ function computerSelection() {
 
 }
 
+
+
 function playerWin() {
     playerScore++;
     playerScore_p.innerHTML = playerScore;
 }  
    
 function computerWin() {
-
     computerScore++;
     computerScore_p.innerHTML = computerScore;
+    
 }   
 
 
@@ -66,11 +68,18 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+
+
 function restartGame() {
     playerScore = 0
     computerScore = 0
     tieScore = 0
+    playerScore_p.innerHTML = playerScore;
+    computerScore_p.innerHTML = computerScore;
+    tieScore_p.innerHTML = tieScore;
 }
+
+
 
 
 // UI
@@ -94,5 +103,6 @@ scissorBtn.addEventListener('click', () => {
 })
 
 restartBtn.addEventListener('click', () => {
-    
+    restartGame();
 })
+
