@@ -1,12 +1,18 @@
 const selections = ['Rock', 'Paper', 'Scissors']
 
-let playerScore = 0
-let computerScore = 0
-let tieScore = 0 
+let playerScore = 0;
+let computerScore = 0;
+let tieScore = 0; 
 
 const rockBtn = document.querySelector('.rockBtn')
 const paperBtn = document.querySelector('.paperBtn')
 const scissorBtn = document.querySelector('.scissorBtn')
+const restartBtn = document.querySelector('.restartBtn')
+
+const playerScore_p = document.getElementById('playerScore');
+const computerScore_p = document.getElementById('computerScore');
+const tieScore_p = document.getElementById('tieScore');
+
 
 
 function computerSelection() {
@@ -14,17 +20,38 @@ function computerSelection() {
 
 }
 
+function playerWin() {
+    playerScore++;
+    playerScore_p.innerHTML = playerScore;
+}  
+   
+function computerWin() {
+
+    computerScore++;
+    computerScore_p.innerHTML = computerScore;
+}   
+
+
+
+
+function tie() {
+    tieScore++
+    tieScore_p.innerHTML = tieScore;
+}
+
+
+
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-         tieScore++
+        tie(playerScore, computerScore);
     }
     else if (
         (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
         (playerSelection === 'Scissors' && computerSelection === 'Paper') ||
         (playerSelection === 'Paper' && computerSelection === 'Rock')
     ) {
-        playerScore++
         
+        playerWin(playerScore, computerScore);
     
     }
     else if (
@@ -32,31 +59,40 @@ function playRound(playerSelection, computerSelection) {
         (computerSelection === 'Scissors' && playerSelection === 'Paper') ||
         (computerSelection === 'Paper' && playerSelection === 'Rock')
 
+    
     ) {
-        computerScore++
+        computerWin(playerScore, computerScore);
          
     }
 }
+
+function restartGame() {
+    playerScore = 0
+    computerScore = 0
+    tieScore = 0
+}
+
 
 // UI
 
 rockBtn.addEventListener('click', () => {
     playerSelection = 'Rock' 
     playRound(playerSelection, computerSelection());
-    console.log(playerScore, computerScore, tieScore);
     
 })
 
 paperBtn.addEventListener('click', () => {
     playerSelection = 'Paper' 
     playRound(playerSelection, computerSelection());
-    console.log(playerScore, computerScore, tieScore);
     
 })
 
 scissorBtn.addEventListener('click', () => {
     playerSelection = 'Scissors' 
     playRound(playerSelection, computerSelection());
-    console.log(playerScore, computerScore, tieScore);
+    
+})
+
+restartBtn.addEventListener('click', () => {
     
 })
