@@ -34,13 +34,10 @@ function computerWin() {
 }   
 
 
-
-
 function tie() {
     tieScore++
     tieScore_p.innerHTML = tieScore;
 }
-
 
 
 function playRound(playerSelection, computerSelection) {
@@ -54,7 +51,8 @@ function playRound(playerSelection, computerSelection) {
     ) {
         
         playerWin(playerScore, computerScore);
-    
+        
+        
     }
     else if (
         (computerSelection === 'Rock' && playerSelection === 'Scissors') ||
@@ -63,10 +61,19 @@ function playRound(playerSelection, computerSelection) {
 
     
     ) {
+
         computerWin(playerScore, computerScore);
+        
          
+    } 
+    if (computerScore === 5) {
+        alert('Computer has Won');
+    } else if (playerScore === 5) {
+        alert('Player has Won');
     }
-}
+ }
+ 
+
 
 
 
@@ -77,6 +84,8 @@ function restartGame() {
     playerScore_p.innerHTML = playerScore;
     computerScore_p.innerHTML = computerScore;
     tieScore_p.innerHTML = tieScore;
+
+    
 }
 
 
